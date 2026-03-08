@@ -141,7 +141,7 @@ openssl-libs-static \
 libxml2-dev \
 libxml2-static \
 libbz2 \
-libbz2-static \
+bzip2-static \
 upx && \
 tar xf tar${TAR_VERSION}.tar.xz && \
 cd tar${TAR_VERSION}/ && \
