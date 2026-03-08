@@ -76,8 +76,8 @@ DEBIAN_DEPS=(wget curl binutils)
 [ -n "${QEMU_ARCH}" ] && DEBIAN_DEPS+=(qemu-user-static)
 sudo apt-get update -qy && sudo apt-get install -y "${DEBIAN_DEPS[@]}"
 
-echo -e "${AQUA}= downloading tar${TAR_VERSION} tarball${NC}"
-TAR_TARBALL="tar${TAR_VERSION}.tar.xz"
+echo -e "${AQUA}= downloading tar-${TAR_VERSION} tarball${NC}"
+TAR_TARBALL="tar-${TAR_VERSION}.tar.xz"
 TAR_DOWNLOADED=false
 for mirror in "${TAR_MIRRORS[@]}"; do
   echo -e "${TAWNY}= trying mirror: ${mirror}${NC}"
@@ -92,12 +92,12 @@ for mirror in "${TAR_MIRRORS[@]}"; do
   fi
 done
 if [ "${TAR_DOWNLOADED}" = false ]; then
-  echo -e "${TOMATO}= ERROR: all mirrors failed for tar${TAR_VERSION}.tar.xz${NC}"
+  echo -e "${TOMATO}= ERROR: all mirrors failed for tar-${TAR_VERSION}.tar.xz${NC}"
   exit 1
 fi
-TAR_KNOWN_SHA256_3_8_5="d68068e74beee3a0ec0dd04aee9037d5757fcc651591a6dcf1b6d542fb15a703"
-if [ "${TAR_VERSION}" = "3.8.5" ]; then
-  verify_checksum "${TAR_TARBALL}" "${TAR_KNOWN_SHA256_3_8_5}"
+TAR_KNOWN_SHA256_1_35="4d621fe51fb0c9100473e34b9d07399589d989f664539659e5531d04494c25ef"
+if [ "${TAR_VERSION}" = "1.35" ]; then
+  verify_checksum "${TAR_TARBALL}" "${TAR_KNOWN_SHA256_1_35}"
 else
   echo -e "${OCHRE}= WARNING: no hardcoded checksum for ${TAR_TARBALL}, skipping verification${NC}"
 fi
@@ -153,7 +153,7 @@ make -j\$(nproc) && \
 strip tar && \
 upx --lzma tar"
 mkdir -p dist
-cp "./pasta/tar${TAR_VERSION}/tar" "dist/tar-${ARCH}"
+cp "./pasta/tar-${TAR_VERSION}/tar" "dist/tar-${ARCH}"
 if command -v file >/dev/null 2>&1; then echo -e "${ORANGE} File Info:  $(file "dist/tar-${ARCH}" | cut -d: -f2-)${NC}"; fi
 tar -C dist -cJf "dist/tar-${ARCH}.tar.xz" "tar-${ARCH}"
 echo -e "${LEMON}= All done! Binary: dist/tar-${ARCH} ($(du -sh "dist/tar-${ARCH}" | cut -f1))${NC}"
