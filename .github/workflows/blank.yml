@@ -1,4 +1,4 @@
-name: Build bsdtar musl static
+name: Build tar musl static
 # Controls when the action will run.
 on:
   # Build at 00:00 every 6th day
@@ -31,22 +31,22 @@ jobs:
       with:
         path: alpine-minirootfs-${{ env.ALPINE_VERSION }}-${{ matrix.arch }}.tar.gz
         key: alpine-rootfs-${{ env.ALPINE_VERSION }}-${{ matrix.arch }}
-    - name: build bsdtar
+    - name: build tar
       run: |
-        COLOR='\x1B[1;34m'
+        COLOR='\x1B[0;33m'
         NC='\x1B[0m'
 
         echo -e "${COLOR} $PATH ${NC}"
-        chmod +x bsdtar-static-musl.sh
-        ./bsdtar-static-musl.sh
+        chmod +x tar-static-musl.sh
+        ./tar-static-musl.sh
       env:
         ARCH: ${{ matrix.arch }}
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: bsdtar-${{ matrix.arch }}
-        path: dist/bsdtar-${{ matrix.arch }}.tar.xz
+        name: tar-${{ matrix.arch }}
+        path: dist/tar-${{ matrix.arch }}.tar.xz
 
   release:
     needs: build
