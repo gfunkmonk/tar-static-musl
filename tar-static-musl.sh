@@ -150,10 +150,10 @@ FORCE_UNSAFE_CONFIGURE=1 ./configure CC=gcc  --without-selinux \
   LDFLAGS='-static -Wl,--gc-sections' PKG_CONFIG='pkg-config --static' \
   CFLAGS='-Os -ffunction-sections -fdata-sections -no-pie' && \
 make -j\$(nproc) && \
-strip tar && \
-upx --lzma tar"
+strip src/tar && \
+upx --lzma src/tar"
 mkdir -p dist
-cp "./pasta/tar-${TAR_VERSION}/tar" "dist/tar-${ARCH}"
+cp "./pasta/tar-${TAR_VERSION}/src/tar" "dist/tar-${ARCH}"
 if command -v file >/dev/null 2>&1; then echo -e "${ORANGE} File Info:  $(file "dist/tar-${ARCH}" | cut -d: -f2-)${NC}"; fi
 tar -C dist -cJf "dist/tar-${ARCH}.tar.xz" "tar-${ARCH}"
 echo -e "${LEMON}= All done! Binary: dist/tar-${ARCH} ($(du -sh "dist/tar-${ARCH}" | cut -f1))${NC}"
