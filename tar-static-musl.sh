@@ -95,7 +95,7 @@ if [ "${TAR_DOWNLOADED}" = false ]; then
   echo -e "${TOMATO}= ERROR: all mirrors failed for tar-${TAR_VERSION}.tar.xz${NC}"
   exit 1
 fi
-TAR_KNOWN_SHA256_1_35="4d621fe51fb0c9100473e34b9d07399589d989f664539659e5531d04494c25ef"
+TAR_KNOWN_SHA256_1_35="4d62ff37342ec7aed748535323930c7cf94acf71c3591882b26a7ea50f3edc16"
 if [ "${TAR_VERSION}" = "1.35" ]; then
   verify_checksum "${TAR_TARBALL}" "${TAR_KNOWN_SHA256_1_35}"
 else
