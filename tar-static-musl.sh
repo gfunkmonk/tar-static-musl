@@ -143,8 +143,8 @@ libxml2-static \
 libbz2 \
 bzip2-static \
 upx && \
-tar xf tar${TAR_VERSION}.tar.xz && \
-cd tar${TAR_VERSION}/ && \
+tar xf tar-${TAR_VERSION}.tar.xz && \
+cd tar-${TAR_VERSION}/ && \
 FORCE_UNSAFE_CONFIGURE=1 ./configure CC=gcc  --without-selinux \
   --disable-nls --disable-rpath --enable-largefile \
   LDFLAGS='-static -Wl,--gc-sections' PKG_CONFIG='pkg-config --static' \
