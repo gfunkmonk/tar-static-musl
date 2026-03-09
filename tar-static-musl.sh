@@ -126,6 +126,8 @@ libxml2-dev \
 libxml2-static \
 libbz2 \
 bzip2-static \
+gettext-dev \
+gettext-static \
 upx && \
 tar xf tar-${TAR_VERSION}.tar.xz && \
 cd tar-${TAR_VERSION}/ && \
